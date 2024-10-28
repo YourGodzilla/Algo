@@ -1,0 +1,1 @@
+DEPE gantengcd "/Users/theodorusyuriputrawibisono/Documents/Belajar/Les/Java/Hari3/" && javac TodoListApp.java && java TodoListApp

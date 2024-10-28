@@ -1,0 +1,90 @@
+Declare Integer counter = 1 
+Const Integer TIME_LIMIT = 60 
+While counter <= TIME_LIMIT 
+    Display counter 
+    Set counter = counter + 1 
+End While 
+Display "Time's up!" 
+
+Module Button_Click()
+    Declare Real tinggi, massa, rasio
+    set tinggi = stringToReal(tinggiTextBox.text)
+    set massa = stringToReal(massaTextBox.text)
+    set rasio = tinggi / massa
+    set rasioLabel.text = realToString(rasio)
+End Module
+
+//=====================//
+declare record phone
+string name
+string number
+end record
+declare boolean found=false
+
+module main
+    declare integer choice  = 0
+    Declare inputoutput phonefile
+    open phonefile "phone.dat"
+    declare string searchname, modname, delname
+    Do while choice not = 5
+        display "1. add new record"
+        display "2. search"
+        display "3. modify"
+        display "4. delete"
+        display "5. exit"
+        input choice
+        Case input of
+        1: call addphone()
+        2: input searchname
+            call search(searchname)
+        3: input modname
+            call modify(modname)
+        4: call delete()
+        5: return (end program)
+        otherwise call error()
+        endcase
+    enddo
+end main
+
+module addphone()
+    begin
+        input phone.name
+        input phone.number
+        write phone record to phonefile
+end addphone
+
+module search(string searchname)
+    set false to found
+    read phonefile record
+    while not eof()
+        if phone.name=searchnam
+            display "Name:",phone.name," ", phone.number
+            set found to true
+        else
+            read next record
+            endif
+            endwhile
+        If found equals false
+            display "name not found"
+        endif
+end search
+
+module modify(string modname)
+    call search(modname)
+    if found=true
+        input phone.name
+        input phone.number
+        write phone record to phonefile
+    else
+        display" number not found"
+    endif
+end modify
+
+module delete(string delname)
+    call search(delname)
+    if found=true
+        delete phone record
+    else
+        display "number not found"
+    endif
+end delete
