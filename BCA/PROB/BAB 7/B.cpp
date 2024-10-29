@@ -38,7 +38,7 @@ void quicksort(Plant arr[], int low, int high) {
 
 int main () {
     int n;
-    Plant plants[45];
+    Plant plants[1005];
 
     FILE *file = fopen("testdata.in", "r");
 
