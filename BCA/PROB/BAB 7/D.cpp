@@ -49,7 +49,7 @@ int main () {
     quicksort(video, 0, n - 1);
 
     for (int i = 0; i < n; i++) {
-         printf("%s by %s - %d\n", video[i].judul, video[i].nama, video[i].count);
+    printf("%s by %s - %d\n", video[i].judul, video[i].nama, video[i].count);
     }
     return 0;
 }
