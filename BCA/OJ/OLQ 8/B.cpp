@@ -23,7 +23,7 @@ int main () {
     }
     
     if (current > max) {
-        max = current; // mengecek apakah urutan terakhir dari 1 itu adalah yang terpanjang
+        max = current; // mengecek apakah urutan terakhir dari 1 itu adalah yang terpanjang, jika iya maka max = current
     }
     
     printf("%d\n", max);
