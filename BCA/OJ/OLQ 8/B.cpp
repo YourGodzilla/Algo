@@ -12,18 +12,18 @@ int main () {
     int max = 0, current = 0;
 
     for (int i = 0; i < n; i++) {
-        if (ground[i] == '1') {
+        if (ground[i] == '1') { // memerika jika ada karakter 1 maka current++
             current++;
         } else {
             if (current > max) {
-                max = current;
+                max = current; // jika bukan 1 maka memeriksa apakah jumlah current lebih besar dari max
             }
-            current = 0;
+            current = 0; // jika iya, memperbarui nilai current menjadi 0
         }
     }
     
     if (current > max) {
-        max = current; 
+        max = current; // mengecek apakah urutan terakhir dari 1 itu adalah yang terpanjang
     }
     
     printf("%d\n", max);
