@@ -22,7 +22,7 @@ int main() {
         }
     }
     
-    for (int i = 0; i < n - 2; i++) { // memriksa jika ada tiga panjang stick yang bisa membentuk segitiga
+    for (int i = 0; i < n - 2; i++) { // memeriksa jika ada tiga panjang stick yang bisa membentuk segitiga
         if (stick[i] + stick[i + 1] > stick[i + 2]) { // memeriksa apakah panjang tongkat pertama dan kedua lebih besar dari panjang tongkat ketiga
             printf("YES\n"); // Jika jumlah dari dua panjang tersebut lebih besar dari panjang yang ketiga, maka dua tongkat tersebut dapat “memeluk” tongkat ketiga, yang berarti mereka dapat membentuk segitiga.
             return 0;
