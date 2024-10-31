@@ -37,14 +37,23 @@ void quicksort (Video arr[], int low, int high) {
 }
 
 int main () {
-    int n = 5;
+    int count = 0;
+    int n = 0;
     Video video[1005];
+    int i = 0;
 
     FILE *file = fopen("testdata.in", "r");
 
-    for (int i = 0; i < n; i++) {
+    while (!feof(file)) {
+        // fscanf(file, %[^\n]\n, count);
         fscanf(file, "%[^#]#%[^#]#%d\n", video[i].judul, video[i].nama, &video[i].count);
+        i++;
+        n++;
     }
+
+    // for (int i = 0; i < n; i++) {
+
+    // }
 
     quicksort(video, 0, n - 1);
 
