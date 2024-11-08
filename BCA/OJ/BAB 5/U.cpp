@@ -15,7 +15,7 @@ int main () {
         int bibi, lili;
         scanf("%d %d", &bibi, &lili);
 
-        printf("Case #%d: ", tc);
+        printf("Case #%d : ", tc);
         if (skor[bibi - 1] > skor[lili - 1]) printf("Bibi\n");
         else if (skor[bibi - 1] < skor[lili - 1]) printf("Lili\n");
         else printf("Draw\n");
