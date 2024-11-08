@@ -22,7 +22,7 @@ int main () {
             }
             sum += temp;
         }
-        printf("Case #%d: %lld", tc, sum);
+        printf("Case #%d: %lld\n", tc, sum);
     }
     
     return 0;
