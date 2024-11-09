@@ -2,8 +2,8 @@
 
 void cabang(int A[105], int N, int index, int sum) {
     int banyakCabang = 0;
-    sum += A[index];
-    if (index * 2 <= N) {
+    sum += A[index]; // menambahakan nilai ke sum
+    if (index * 2 <= N) { // melakukan transvesal dari kiri ke kanan
         cabang(A, N, index * 2, sum);
         banyakCabang++;
     }
