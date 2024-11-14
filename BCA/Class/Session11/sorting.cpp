@@ -46,6 +46,50 @@ void countingSort(int arr[], int n, int k) {
     }
 }
 
+void merge(int arr[], int l, int m, int r) {
+    int i, j, k;
+    int temp[r+5];
+    i = l;
+    j = m+1;
+    while (i <= m && j <= r) {
+        if (arr[i] < arr[j]) {
+            temp[k] = arr[i];
+            k++;
+            i++;
+        } else {
+            temp[k] = arr[j];
+            k++;
+            j++;
+        }
+    }
+
+    while (i <= m) { // copy sisanya dari bagian kiri
+        temp[k] = arr[i];
+        k++;
+        i++;
+    }
+
+    while (j <= r) { // copy sisanya dari bagian kanan
+        temp[k] = arr[j];
+        k++;
+        i++;
+    }
+
+    for (int i = l; i <= r; i++) { // copy balikin ke arr awal
+        arr[i] = temp[i];
+    }
+    
+}
+
+void mergeSort(int arr[], int l, int r) {
+    if(l >= r) return;
+    int m = l + (r - l) / 2;
+
+    mergeSort(arr, l, m);
+    mergeSort(arr, m+1, r);
+    merge(arr, l, m, r);
+}
+
 int main () {
     int angka[1005];
     printf("Before Sorting: \n");
@@ -57,7 +101,8 @@ int main () {
     
     // selectionSort(angka, 20);
     // bubbleSort(angka, 20);
-    countingSort(angka, 20, 1001); 
+    // countingSort(angka, 20, 1001); 
+    mergeSort(angka, 0, 19);
 
     printf("After Sorting: \n");
     for (int i = 0; i < 20; i++) {
