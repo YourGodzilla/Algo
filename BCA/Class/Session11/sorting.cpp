@@ -25,5 +25,12 @@ int main () {
     }
     printf("\n");
     
+    selectionSort(angka, 20);
+
+    for (int i = 0; i < 20; i++) {
+        printf("%d, ", angka[i]);
+    }
+    
+    
     return 0;
 }
