@@ -8,7 +8,7 @@ void swap(int *a, int *b) {
 }
 
 void selectionSort(int arr[], int n) {
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n - 1; i++) {
         int k = 1;
         for (int j = i + 1; j < n; j++) {
             if (arr[j] < arr[k]) k = j;
@@ -20,7 +20,7 @@ void selectionSort(int arr[], int n) {
 int main () {
     int angka[1005];
     printf("Before Sorting: \n");
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < 10; i++) {
         angka[i] = rand() % 1000 + 1;
         printf("%d, ", angka[i]);
     }
@@ -29,7 +29,7 @@ int main () {
     selectionSort(angka, 20);
 
     printf("After Sorting: \n");
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < 10; i++) {
         printf("%d, ", angka[i]);
     }
     printf("\n");
