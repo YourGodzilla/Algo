@@ -19,6 +19,7 @@ void selectionSort(int arr[], int n) {
 
 int main () {
     int angka[1005];
+    printf("Before Sorting: \n");
     for (int i = 0; i < 20; i++) {
         angka[i] = rand() % 1000 + 1;
         printf("%d, ", angka[i]);
@@ -27,10 +28,11 @@ int main () {
     
     selectionSort(angka, 20);
 
+    printf("After Sorting: \n");
     for (int i = 0; i < 20; i++) {
         printf("%d, ", angka[i]);
     }
-    
+    printf("\n");
     
     return 0;
 }
