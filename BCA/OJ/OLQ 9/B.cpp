@@ -13,22 +13,15 @@ int compare(const void *a, const void *b) {
 int main() {
     int n;
     scanf("%d", &n);
-
-    char **namaPointers = (char **)malloc(n * sizeof(char *));
-    if (namaPointers == NULL) {
-        printf("Memory allocation failed!\n");
-        return 1;
-    }
-
+    
+    char nama[n][55];
+    char *namaPointers[n];
+    
     for (int i = 0; i < n; i++) {
-        namaPointers[i] = (char *)malloc(55 * sizeof(char));
-        if (namaPointers[i] == NULL) {
-            printf("Memory allocation failed for word %d!\n", i);
-            return 1;
-        }
-        scanf("%s", namaPointers[i]);
+        scanf("%s", nama[i]);
+        namaPointers[i] = nama[i];
     }
-
+    
     int order;
     scanf("%d", &order);
     ascending_order = (order == 0);
@@ -37,9 +30,7 @@ int main() {
 
     for (int i = 0; i < n; i++) {
         printf("%s\n", namaPointers[i]);
-        free(namaPointers[i]);
     }
 
-    free(namaPointers);
     return 0;
 }
