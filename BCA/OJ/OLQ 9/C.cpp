@@ -1,49 +1,52 @@
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
 
-int ascending_order;
+typedef struct {
+    char name[55];
+    int num;
+} Data;
 
-int compare(const void *a, const void *b) {
-    const char *strA = *(const char **)a;
-    const char *strB = *(const char **)b;
-    return ascending_order ? strcmp(strA, strB) : strcmp(strB, strA);
+void swap(Data *a, Data *b) {
+    Data temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int partition(Data arr[], int low, int high) {
+    int pivot = arr[high].num;
+    int i = low - 1;
+
+    for (int j = low; j < high; j++) {
+        if (arr[j].num > pivot || (arr[j].num == pivot && strcmp(arr[j].name, arr[high].name) < 0)) {
+            i++;
+            swap(&arr[i], &arr[j]);
+        }
+    }
+    swap(&arr[i+1], &arr[high]);
+    return (i + 1);
+}
+
+void quicksort(Data arr[], int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+
+        quicksort(arr, low, pi-1);
+        quicksort(arr, pi+1, high);
+    }
 }
 
 int main() {
+    Data data[105];
+
     int n;
     scanf("%d", &n);
-
-    // Dynamically allocate memory for n words
-    char **namaPointers = (char **)malloc(n * sizeof(char *));
-    if (namaPointers == NULL) {
-        printf("Memory allocation failed!\n");
-        return 1;
-    }
-
-    // Dynamically allocate memory for each word (55 chars max per word)
     for (int i = 0; i < n; i++) {
-        namaPointers[i] = (char *)malloc(55 * sizeof(char));
-        if (namaPointers[i] == NULL) {
-            printf("Memory allocation failed for word %d!\n", i);
-            return 1;
-        }
-        scanf("%s", namaPointers[i]);
+        scanf("%s %d", data[i].name, &data[i].num);
     }
+    
+    quicksort(data, 0, n - 1);
 
-    int order;
-    scanf("%d", &order);
-    ascending_order = (order == 0);
-
-    // Sort the words
-    qsort(namaPointers, n, sizeof(char *), compare);
-
-    // Print the sorted words
     for (int i = 0; i < n; i++) {
-        printf("%s\n", namaPointers[i]);
-        free(namaPointers[i]);
+        printf("%s %d\n", data[i].name, data[i].num);
     }
-
-    free(namaPointers);
-    return 0;
 }
