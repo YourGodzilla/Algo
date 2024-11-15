@@ -65,7 +65,20 @@ void createItem() {
 }
 
 void viewItem() {
+    FILE *file = fopen("items.txt", "r");
 
+    Item item;
+
+    if (file == NULL) {
+        printf("File not found!\n");
+        return;
+    }
+
+    while (fscanf(file, "%[^#]#%d#%d\n", item.name, item.price, item.stock) != EOF) {
+        printf("name: %s, price: %d, stock: %d\n", item.name, item.price, item.stock);
+    }
+
+    fclose(file);
 }
 
 void deleteItem() {
