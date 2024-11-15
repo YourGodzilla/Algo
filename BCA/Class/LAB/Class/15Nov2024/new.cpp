@@ -87,7 +87,7 @@ void deleteItem() {
 
     Item item;
     Item deletedItem;
-    int found;
+    int found = 0;
 
     if (file == NULL) {
         printf("File not found!\n");
