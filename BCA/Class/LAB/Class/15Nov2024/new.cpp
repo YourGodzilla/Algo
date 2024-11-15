@@ -74,7 +74,7 @@ void viewItem() {
         return;
     }
 
-    while (fscanf(file, "%[^#]#%d#%d\n", item.name, item.price, item.stock) != EOF) {
+    while (fscanf(file, "%[^#]#%d#%d\n", item.name, &item.price, &item.stock) != EOF) {
         printf("name: %s, price: %d, stock: %d\n", item.name, item.price, item.stock);
     }
 
