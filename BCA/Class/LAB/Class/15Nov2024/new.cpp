@@ -1,6 +1,14 @@
 #include <stdio.h>
 #include <string.h>
 
+typedef struct {
+    char name[30];
+    int price;
+    int stock
+;} Item;
+
+Item itemList[100];
+
 void createItem();
 void viewItem();
 void deleteItem();
@@ -27,6 +35,8 @@ int main() {
                 break;
         }
     } while (choice != 4);
+
+    return 0;
 }
 
 // "w" untuk write file
@@ -34,7 +44,24 @@ int main() {
 // "r" untuk read file
 
 void createItem() {
-    FILE *file = fopen("items.txt", "w");
+    FILE *file = fopen("items.txt", "a");
+
+    if (file == NULL) {
+        printf("File not found!\n");
+        return;
+    }
+
+    Item newItem;
+    printf("Enter item name: ");
+    scanf("%[^\n]", newItem.name); getchar();
+    printf("Enter item price: ");
+    scanf("%d", &newItem.price); getchar();
+    printf("Enter item stock: ");
+    scanf("%D", &newItem.stock); getchar();
+
+    fprintf(file, "%s#%d#%d\n", newItem.name, newItem.price, newItem.stock);
+
+    fclose(file);
 }
 
 void viewItem() {
