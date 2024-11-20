@@ -48,7 +48,7 @@ int main () {
             if (a[i+1] - a[i] > jarak) jarak = a[i+1] - a[i];
         }
 
-        printf("Case %d: %d\n", tc, jarak);
+        printf("Case #%d: %d\n", tc, jarak);
     }
     return 0;
 }
