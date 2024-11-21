@@ -8,7 +8,7 @@ int binarySearch(char arr[][100], int n, char *x) {
 
         int compare = strcmp(arr[mid], x);
 
-        if (compare == 0) return 1; 
+        if (compare == 0) return mid; 
         else if (compare < 0) left = mid + 1;
         else right = mid - 1;
     }
