@@ -29,7 +29,9 @@ int main() {
 
     int index = binarySearch(kamus, n, findKata);
 
-    int page = (index == -1) ? 0 : (index / x) + 1;
+    int page;
+    if (index == -1) page = 0;
+    else page = (index / x) + 1;
 
     printf("%d\n", page);
     
