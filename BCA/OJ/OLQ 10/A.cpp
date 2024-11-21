@@ -2,6 +2,11 @@
 #include <string.h>
 #include <stdlib.h>
 
+int abs (int a) {
+    if (a < 0) return -a;
+    return a;
+}
+
 typedef struct {
     char nama[256];
     int skor;
@@ -41,21 +46,14 @@ int main() {
         int index1 = binarySearch(players, t, p1);
         int index2 = binarySearch(players, t, p2);
 
-        if (index1 == -1 || index2 == -1) {
-            printf("not found\n");
-        } else if (index1 == index2) {
-            printf("not valid\n");
-        } else {
-            int skorGap = players[index1].skor - players[index2].skor;
-            if (skorGap < 0) skorGap = -skorGap;
+        int skorGap = players[index1].skor - players[index2].skor;
+        if (skorGap < 0) skorGap = -skorGap;
 
-            int boardGap = index1 - index2;
-            if (boardGap < 0) boardGap = -boardGap;
-
+        int boardGap = index1 - index2;
+        if (boardGap < 0) boardGap = -boardGap;
 
         printf("%d %d\n", skorGap, boardGap);
     }
-    
-    
+
     return 0;
 }
