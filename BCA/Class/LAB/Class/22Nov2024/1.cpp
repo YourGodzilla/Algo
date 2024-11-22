@@ -24,6 +24,7 @@ int main() {
     int choice = 0;
 
     do {
+        loadFile();
         printf("1. Add Product\n");
         printf("2. View Product\n");
         printf("3. Update Product\n");
@@ -33,6 +34,7 @@ int main() {
 
         switch(choice) {
             case 1:
+                createProduct();
                 break;
             case 2:
                 break;
@@ -60,6 +62,11 @@ void saveFile() {
 void loadFile() {
     FILE *file = fopen("products.txt", "r");
 
+    if(file == NULL) {
+        printf("Error loading file...");
+        return;
+    }
+
     productCount = 0;
     while(fscanf(file, "%d#%[^#]#%d\n", &products[productCount].id, products[productCount].name, &products[productCount].price) != EOF) {
         productCount++;
@@ -80,4 +87,6 @@ void createProduct() {
 
     products[productCount++] = newProduct;
     saveFile();
+
+    printf("Product added successfully\n");
 }
