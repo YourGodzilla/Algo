@@ -20,7 +20,7 @@ void loadFile(); // read file
 
 
 
-int main() {
+int main () {
     int choice = 0;
 
     do {
@@ -31,12 +31,14 @@ int main() {
         printf("4. Sort by price\n");
         printf("5. Exit\n");
         printf(">> ");
+        scanf("%d", &choice); getchar();
 
         switch(choice) {
             case 1:
                 createProduct();
                 break;
             case 2:
+                viewProduct();
                 break;
             case 3:
                 break;
@@ -49,21 +51,21 @@ int main() {
     return 0;
 }
 
-void saveFile() {
+void saveFile () {
     FILE *file = fopen("products.txt", "w");
 
     for (int i = 0; i < productCount; i++) {
-        fprintf(file, "%d#%d#%d\n", products[i].id, products[i].name, products[i].price);
+        fprintf(file, "%d#%s#%d\n", products[i].id, products[i].name, products[i].price);
     }
     
     fclose(file);
 }
 
-void loadFile() {
+void loadFile () {
     FILE *file = fopen("products.txt", "r");
 
     if(file == NULL) {
-        printf("Error loading file...");
+        printf("Error loading file...\n");
         return;
     }
 
@@ -75,13 +77,13 @@ void loadFile() {
     fclose(file);
 }
 
-void createProduct() {
+void createProduct () {
     Product newProduct;
 
     printf("Enter product name: ");
     scanf("%[^\n]", newProduct.name); getchar();
     printf("Enter product price: ");
-    scanf("%d", newProduct.price); getchar();
+    scanf("%d", &newProduct.price); getchar();
 
     newProduct.id = productCount + 1;
 
@@ -89,4 +91,14 @@ void createProduct() {
     saveFile();
 
     printf("Product added successfully\n");
+}
+
+void viewProduct () {
+    if (productCount == 0) {
+        printf("There's no product\n");
+    }
+
+    for (size_t i = 0; i < productCount; i++) {
+        printf("ID: %d, Name: %s, Price: %d\n", products[i].id, products[i].name, products[i].price);
+    }
 }
