@@ -41,8 +41,10 @@ int main () {
                 viewProduct();
                 break;
             case 3:
+                updateProduct();
                 break;
             case 4:
+                sortByPrice();
                 break;
             case 5:
                 return 0;
