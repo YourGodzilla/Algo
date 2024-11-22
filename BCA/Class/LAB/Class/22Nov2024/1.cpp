@@ -104,3 +104,32 @@ void viewProduct () {
         printf("ID: %d, Name: %s, Price: %d\n", products[i].id, products[i].name, products[i].price);
     }
 }
+
+void updateProduct() {
+    int toUpdate;
+    printf("Enter id to update: ");
+    scanf("%d", &toUpdate); getchar();
+
+    int result = searchById(toUpdate);
+
+    if(result != -1) {
+        int newPrice;
+
+        printf("Enter new price: ");
+        scanf("%d", &newPrice);
+
+        products[result].price = newPrice;
+
+        saveFile();
+    } else {
+        printf("Product not found!\n");
+    }
+}
+
+int searchById(int id) {
+    for (int i = 0; i < productCount; i++) {
+        if(products[productCount].id == id) return i;
+    }
+
+    return -1;
+}
