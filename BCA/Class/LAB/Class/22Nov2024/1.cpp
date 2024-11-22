@@ -94,7 +94,7 @@ void createProduct () {
 }
 
 void viewProduct () {
-    if (productCount == 0) {
+    if (productCount == 0) { // validasi empty
         printf("There's no product\n");
     }
 
