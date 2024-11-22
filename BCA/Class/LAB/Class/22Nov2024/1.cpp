@@ -27,7 +27,7 @@ int main () {
         loadFile();
         printf("1. Add Product\n");
         printf("2. View Product\n");
-        printf("3. Update Product\n");
+        printf("3. Update Product Price\n");
         printf("4. Sort by price\n");
         printf("5. Exit\n");
         printf(">> ");
