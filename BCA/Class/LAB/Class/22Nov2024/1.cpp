@@ -44,7 +44,6 @@ int main () {
                 updateProduct();
                 break;
             case 4:
-                sortByPrice();
                 break;
             case 5:
                 return 0;
@@ -128,7 +127,7 @@ void updateProduct() {
 
 int searchById(int id) {
     for (int i = 0; i < productCount; i++) {
-        if(products[productCount].id == id) return i;
+        if(products[i].id == id) return i;
     }
 
     return -1;
