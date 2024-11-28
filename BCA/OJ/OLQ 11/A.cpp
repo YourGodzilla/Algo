@@ -14,19 +14,19 @@ void swap(Tamu *a, Tamu *b) {
 
 void quicksort(Tamu arr[], int low, int high) {
     if (low < high) {
-        int pivotIndex = low;
+        int index = low;
         char pivot[105];
         strcpy(pivot, arr[high].nama);
         for (int i = low; i < high; i++) {
             if (strcmp(arr[i].nama, pivot) < 0) {
-                swap(&arr[i], &arr[pivotIndex]);
-                pivotIndex++;
+                swap(&arr[i], &arr[index]);
+                index++;
             }
         }
-        swap(&arr[pivotIndex], &arr[high]);
+        swap(&arr[index], &arr[high]);
 
-        quicksort(arr, low, pivotIndex - 1);
-        quicksort(arr, pivotIndex + 1, high);
+        quicksort(arr, low, index - 1);
+        quicksort(arr, index + 1, high);
     }
 }
 
