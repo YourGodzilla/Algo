@@ -12,21 +12,28 @@ void swap(Tamu *a, Tamu *b) {
     *b = temp;
 }
 
+int partition(Tamu arr[], int low, int high) {
+    int mid = low + (high - low) / 2;
+    swap(&arr[mid], &arr[high]);
+    char pivot[105];
+    strcpy(pivot, arr[high].nama);
+
+    int index = low;
+    for (int i = low; i < high; i++) {
+        if (strcmp(arr[i].nama, pivot) < 0) {
+            swap(&arr[i], &arr[index]);
+            index++;
+        }
+    }
+    swap(&arr[index], &arr[high]);
+    return index;
+}
+
 void quicksort(Tamu arr[], int low, int high) {
     if (low < high) {
-        int index = low;
-        char pivot[105];
-        strcpy(pivot, arr[high].nama);
-        for (int i = low; i < high; i++) {
-            if (strcmp(arr[i].nama, pivot) < 0) {
-                swap(&arr[i], &arr[index]);
-                index++;
-            }
-        }
-        swap(&arr[index], &arr[high]);
-
-        quicksort(arr, low, index - 1);
-        quicksort(arr, index + 1, high);
+        int pi = partition(arr, low, high);
+        quicksort(arr, low, pi - 1);
+        quicksort(arr, pi + 1, high);
     }
 }
 
@@ -70,4 +77,3 @@ int main() {
 
     return 0;
 }
-
