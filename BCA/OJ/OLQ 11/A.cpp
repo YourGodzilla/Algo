@@ -53,21 +53,23 @@ int binarySearch(Tamu arr[], int size, char *key) {
 }
 
 int main() {
+    FILE *file = fopen("testdata.in", "r");
+
     int T, N, i;
     Tamu rsvp[1005];
     char datang[1005][105];
 
-    scanf("%d", &T);
+    fscanf(file, "%d\n", &T);
     for (i = 0; i < T; i++) {
-        scanf("%s", rsvp[i].nama);
+        fscanf(file, "%s\n", rsvp[i].nama);
         rsvp[i].indeks = i;
     }
 
     quicksort(rsvp, 0, T - 1);
 
-    scanf("%d", &N);
+    fscanf(file, "%d\n", &N);
     for (i = 0; i < N; i++) {
-        scanf("%s", datang[i]);
+        fscanf(file, "%s\n", datang[i]);
     }
 
     for (i = 0; i < N; i++) {
