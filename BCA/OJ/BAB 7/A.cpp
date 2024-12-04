@@ -34,13 +34,13 @@ void quicksort(long long int arr[], long long int low, long long int high) {
     }
 }
 
-long long int main() {
+int main() {
     long long int t;
-    scanf("%d", &t);
+    scanf("%lld", &t);
 
     long long int n[100005];
     for (long long int i = 0; i < t; i++) {
-        scanf("%lld", &n);
+        scanf("%lld", &n[i]);
     }
 
     quicksort(n, 0, t-1);
