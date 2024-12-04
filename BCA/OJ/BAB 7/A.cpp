@@ -47,7 +47,7 @@ long long int main() {
 
     long long int max = -10000005;
     long long int diff[100005] = {0};
-    for (int i = 0; i < t - 1; i++) { // jadi dia menghitung selisih angka yang sudah di absolute
+    for (int i = 0; i < t - 1; i++) { // menghitung selisih angka yang sudah di absolute
         diff[i] = abs(n[i] - n[i+1]);
         if (diff[i] > max) max = diff[i];
     }
