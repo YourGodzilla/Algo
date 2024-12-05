@@ -23,6 +23,7 @@ int bubbleSort(int arr[], int n) {
 int binarySearch(int arr[], int low, int high, int find) {
     if (low > high) return -1;
     int m = (low + high) / 2;
+    
     if (arr[m] == find) return m;
     else if (find < arr[m]) return binarySearch(arr, low, m-1, find);
     else return binarySearch(arr, m+1, high, find);
