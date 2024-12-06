@@ -18,7 +18,7 @@ void buyMenu();
 int nextInt();
 
 // in case kalau di soal ngga pake file
-Bakmie bakmie[200];
+Bakmie bakmies[200];
 int count = 0;
 
 int main() {
@@ -65,6 +65,16 @@ void insertToFile(char ID[105], char name[105], char category[105], int stock, i
     fclose(file);
 }
 
+
+void mergeSort(int left, int right) {
+    if (left < right) {
+        int mid = (left + right) / 2;
+
+        mergeSort(left, mid);
+        mergeSort(mid+1, right);
+    }
+}
+
 void createMenu() {
     char ID[25];
     char name[105];
@@ -99,11 +109,25 @@ void createMenu() {
 
     insertToFile(ID, name, category, stock, price);
 
+    Bakmie bakmie;
+    strcpy(bakmie.ID, ID);
+    strcpy(bakmie.name, name);
+    strcpy(bakmie.category, category);
+    bakmie.stock = stock;
+    bakmie.price = price;
+    bakmies[count] = bakmie;
+    count++;
+
     printf("Bakmie has been created!\n");
 }
 
 void viewMenu() {
+    if(count == 0) {
+        printf("There is no data\n"); getchar();
+        return;
+    }
 
+    mergeSort(0, count-1);
 }
 
 void buyMenu() {
