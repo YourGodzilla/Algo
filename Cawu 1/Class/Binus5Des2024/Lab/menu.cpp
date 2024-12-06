@@ -65,6 +65,48 @@ void insertToFile(char ID[105], char name[105], char category[105], int stock, i
     fclose(file);
 }
 
+void merge(int left, int mid, int right) {
+    int len1 = mid - left + 1;
+    int len2 = right - mid;
+
+    Bakmie arr1[len1];
+    Bakmie arr2[len2];
+
+    for (int i = 0; i < len1; i++) {
+        arr1[i] = bakmies[left + i];
+    }
+
+    for (int j = 0; j < len2; j++) {
+        arr2[j] = bakmies[mid + 1 + j];
+    }
+
+    int idx1 = 0;
+    int idx2 = 0;
+    int idx = left;
+
+    while(idx1 < len1 && idx2 < len2) {
+        if (strcmp(arr1[idx1].name, arr2[idx2].name) < 0) {
+            bakmies[idx] = arr1[idx1];
+            idx1++;
+        } else {
+            bakmies[idx] = arr2[idx2];
+            idx2++;
+        }
+        idx++;
+
+        while (idx1 < len1) {
+            bakmies[idx] = arr1[idx1];
+            idx1++;
+            idx++;
+        }
+
+        while (idx2 < len2) {
+            bakmies[idx] = arr2[idx2];
+            idx2++;
+            idx++;
+        }
+    }
+}
 
 void mergeSort(int left, int right) {
     if (left < right) {
@@ -72,6 +114,8 @@ void mergeSort(int left, int right) {
 
         mergeSort(left, mid);
         mergeSort(mid+1, right);
+
+        merge(left, mid, right);
     }
 }
 
@@ -128,6 +172,10 @@ void viewMenu() {
     }
 
     mergeSort(0, count-1);
+
+    for (int i = 0; i < count; i++) {
+        printf("%s %s %s %d %d\n", bakmies[i].ID, bakmies[i].name, bakmies[i].category, bakmies[i].stock, bakmies[i].price);
+    }
 }
 
 void buyMenu() {
