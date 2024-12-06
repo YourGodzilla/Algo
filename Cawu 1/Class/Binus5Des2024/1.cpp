@@ -26,14 +26,14 @@ int main() {
     for (int i = 0; i < n; i++) {
         scanf("%d %d %d %d", &x1, &y1, &x2, &y2);
         for (int j = x1; j <= x2; j++) {
-            for (int k = y1; k < y2; k++) {
+            for (int k = y1; k <= y2; k++) {
                 map[j][k] = '.';
             }
         }
     }
 
     for (int i = 1; i <= s; i++) {
-        printf("%c\n", map[i]);
+        printf("%s\n", map[i]);
     }
 
     int count = 0;
