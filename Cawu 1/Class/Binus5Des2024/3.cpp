@@ -1,5 +1,18 @@
 #include <stdio.h>
 
+int floodfill(char board[105][105], int n, int x, int y) {
+    if (x < 0 || x >= n || y < 0 || y >= n || board[x][y] != '.') {
+        return 0;
+    }
+    board[x][y] = 'x';
+    int count = 1;
+    count += floodfill(board, n, x+1, y);
+    count += floodfill(board, n, x-1, y);
+    count += floodfill(board, n, x, y+1);
+    count += floodfill(board, n, x, y-1);
+    return count;
+}
+
 int main() {
     char arr[105][105];
     int n, m, x, y;
@@ -32,6 +45,22 @@ int main() {
             }
         }
     }
+
+    for (int i = 0; i < n; i++) { // printf board
+        printf("%s\n", arr[i]);
+    }
+
+    int max = 0;
+    for (int i = 0; i < n; i++) { // hitung max
+        for (int j = 0; j < n; j++) {
+            if (arr[i][j] == '.') {
+                int v = floodfill(arr, n, i, j);
+                if ( v > max) max = v;
+            }
+        }
+    }
+
+    printf("%d\n", max);
     
     return 0;
 }
