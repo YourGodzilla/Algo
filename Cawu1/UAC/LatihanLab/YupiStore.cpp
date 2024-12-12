@@ -211,7 +211,54 @@ void mergesort(item yupi[], int left, int right) {
 }
 
 void view() {
+    if (yupiCount == 0) {
+        puts("There is no candy!");
+        enterToContinue();
+        return;
+    }
 
+    // validation
+    char confirm[100];
+    printf("Choose View Mode [All / Choco / Gummy / Minty / Fruity]! : ");
+    
+    do {
+        scanf("%s", confirm); getchar();
+
+        if (strcmp(confirm, "All") != 0 && strcmp(confirm, "Choco") != 0 && strcmp(confirm, "Gummy") != 0 && strcmp(confirm, "Minty") != 0 && strcmp(confirm, "Fruity") != 0) {
+            puts("Input must be All / Choco / Gummy / Minty / Fruity!");
+        }
+    } while (strcmp(confirm, "All") != 0 && strcmp(confirm, "Choco") != 0 && strcmp(confirm, "Gummy") != 0 && strcmp(confirm, "Minty") != 0 && strcmp(confirm, "Fruity") != 0);
+
+    if (strcmp(confirm, "All") == 0) {
+        mergesort(yupi, 0, yupiCount-1);
+        for (int i = 0; i < yupiCount; i++) {
+            printf("No : %d\n", i + 1);
+            printf("ID : %s\n", yupi[i].ID);
+            printf("Name : %s\n", yupi[i].name);
+            printf("Category : %s\n", yupi[i].category);
+            printf("Stock : %d\n", yupi[i].stock);
+            printf("Price : %d\n", yupi[i].price);
+            puts("====================================");
+        }
+    } else {
+        int counter = 1, flag = 0;
+        for (int i = 0; i < yupiCount; i++) {
+            if (strcmp(yupi[i].category, confirm) == 0) {
+                flag = 1;
+                printf("No : %d\n", i + 1);
+                printf("ID : %s\n", yupi[i].ID);
+                printf("Name : %s\n", yupi[i].name);
+                printf("Category : %s\n", yupi[i].category);
+                printf("Stock : %d\n", yupi[i].stock);
+                printf("Price : %d\n", yupi[i].price);
+                puts("====================================");
+                counter++;
+            }
+        }
+        
+        if (!flag) puts("There is no product in that category");
+    }
+    enterToContinue();
 }
 
 void buy() {
