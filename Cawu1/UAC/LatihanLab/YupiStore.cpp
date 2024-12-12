@@ -219,7 +219,7 @@ void view() {
 
     // validation
     char confirm[100];
-    printf("Choose View Mode [All / Choco / Gummy / Minty / Fruity]! : ");
+    printf("Choose View Mode [All / Choco / Gummy / Minty / Fruity] : ");
     
     do {
         scanf("%s", confirm); getchar();
