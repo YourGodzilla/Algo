@@ -262,5 +262,78 @@ void view() {
 }
 
 void buy() {
+    if (yupiCount == 0) {
+        puts("There is no candy!");
+        enterToContinue();
+        return;
+    }
 
+    // view
+    for (int i = 0; i < yupiCount; i++) {
+            printf("No : %d\n", i + 1);
+            printf("ID : %s\n", yupi[i].ID);
+            printf("Name : %s\n", yupi[i].name);
+            printf("Category : %s\n", yupi[i].category);
+            printf("Stock : %d\n", yupi[i].stock);
+            printf("Price : %d\n", yupi[i].price);
+            puts("====================================");
+        }
+    
+    // name
+    char name[100];
+    int flag = 0, quantity = 0;
+
+    do {
+        printf("Enter Candy Name: ");
+        scanf("%[^\n]", name); getchar();
+
+        for (int i = 0; i < yupiCount; i++) {
+            if (strcmp(name, yupi[i].name) == 0) {
+                flag = 1;
+                quantity = i;
+                break;
+            }
+        }
+
+        if (strlen(name) < 8 || strlen(name) > 20) {
+            puts("Input must be between 8 to 20!");
+        } else if (!flag) {
+            puts("There is no candy!");
+        }
+    } while (strlen(name) < 8 || strlen(name) > 20);
+
+    int toBuy = 0;
+    do {
+        printf("Enter candy quantity you want to buy: ");
+        scanf("%d", &toBuy); getchar();
+
+        if (toBuy > yupi[quantity].stock || toBuy < 1) {
+            puts("Quantity must not exceed the available stock!");
+        }
+    } while (toBuy > yupi[quantity].stock || toBuy < 1);
+
+    char confirm[10];
+    printf("Are you sure want to add this candy? [yes / no] : ");
+
+    do {
+        scanf("%s", confirm); getchar();
+        if (strcmp(confirm, "Yes") != 0 && strcmp(confirm, "yes") != 0 && strcmp(confirm, "No") != 0 && strcmp(confirm, "no") != 0) {
+            puts("Input must be between [yes / no]!");
+        }
+    } while (strcmp(confirm, "Yes") != 0 && strcmp(confirm, "yes") != 0 && strcmp(confirm, "No") != 0 && strcmp(confirm, "no") != 0);
+
+    if (strcmp(confirm, "Yes") || strcmp(confirm, "yes")) {
+        if (toBuy < yupi[quantity].stock) {
+            yupi[quantity].stock -= toBuy;
+        } else {
+            for (int i = quantity; i < yupiCount; i++) {
+                yupi[i] = yupi[i+1];
+            }
+            yupiCount--;
+        }
+        saveFile();
+        puts("Candy succesfully created!");
+    } else puts("Candy has been cancelled!");
+
+    enterToContinue();
 }
