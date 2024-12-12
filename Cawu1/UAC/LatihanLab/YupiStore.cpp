@@ -84,7 +84,7 @@ void loadFile() {
 }
 
 void printMenu() {
-    system("clear");
+    system("cls");
     puts("YUPI STORE");
     loadFile();
     puts("1. Create Candy");
