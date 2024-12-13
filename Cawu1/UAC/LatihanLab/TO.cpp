@@ -81,7 +81,7 @@ void loadfile() {
 
     teamCount = 0;
 
-    while (fscanf(file, "%[^|]%[^|]%[^|]%s\n", team[teamCount].id, team[teamCount].name, team[teamCount].idea, team[teamCount].event) != EOF) {
+    while (fscanf(file, "%[^|]|%[^|]|%[^|]|%[^\n]\n", team[teamCount].id, team[teamCount].name, team[teamCount].idea, team[teamCount].event) != EOF) {
         teamCount++;
     }
 
@@ -95,7 +95,7 @@ void printmenu() {
     puts("==================");
     puts("1. Register Team");
     puts("2. View All Registered Teams");
-    puts("2. Delete Registered Teams");
+    puts("3. Delete Registered Teams");
     puts("4. Exit");
     puts("==================");
 }
@@ -110,6 +110,67 @@ void printevent() {
 
 void enter() {
     printf("Press ENTER to continue..."); gc
+}
+
+void merge(item team[], int left,int mid, int right) {
+    int i = left, j = mid+1, k = left;
+    item temp[right+5];
+
+    while (i <= mid && j <= right) {
+        if (strcmp(team[i].name , team[j].name) > 0) {
+            temp[k] = team[i];
+            k++;
+            i++;
+        } else {
+            temp[k] = team[j];
+            k++;
+            j++;
+        }
+    }
+
+    while (i <= mid) {
+        temp[k] = team[i];
+        k++;
+        i++;
+    }
+
+    while (j <= right) {
+        temp[k] = team[j];
+        k++;
+        j++;
+    }
+
+    for (int i = left; i < right; i++) {
+        team[i] = temp[i];
+    }
+}
+
+void sort(item team[], int left, int right) {
+    if (left <= right) return;
+
+    int mid = left + (right - left) / 2;
+
+    sort(team, left, right);
+    sort(team, mid+1, right);
+    merge(team, left, mid, right);
+}
+
+void menu2() {
+    if (teamCount == 0) {
+        puts("There is no team registered yet...");
+        enter();
+    }
+
+    for (int i = 0; i < teamCount; i++) {
+        printf("No. %d\n", i + 1);
+        printf("Team ID : %s\n", team[i].id);
+        printf("Team Name : %s\n", team[i].name);
+        printf("Idea : %s\n", team[i].idea);
+        printf("Event Name : %s\n", team[i].event);
+        puts("=======================");
+	}
+
+    enter();
 }
 
 void menu1() {
@@ -133,8 +194,8 @@ void menu1() {
     int flag = 0;
 	int count;
 	do{
-		printf("Input teams Idea: ");getchar();
-		scanf("%[^\n]", newteam.idea);
+		printf("Input teams Idea: ");
+		scanf("%[^\n]", newteam.idea); gc
 		for(int i = 0; i < strlen(newteam.idea); i++){
 			if(newteam.idea[i] == ' '){
 				count++;
@@ -148,18 +209,35 @@ void menu1() {
     // id
     sprintf(newteam.id, "TI%d%d%d", rand() % 10, rand() % 10, rand() % 10);
 
-    team[teamCount] = newteam;
-    teamCount++;
+    sort(team, 0, teamCount-1);
+    team[teamCount++] = newteam;
     savefile();
 
-    puts("Register Succesfully");
+    puts("Register Succesfully...");
     enter();
 }
 
-void menu2() {
-
-}
 
 void menu3() {
+    menu2();
+    char input[10];
 
+    printf("Input team ID : ");
+    scanf("%[^\n]", input); gc
+
+    int flag = 0, idx = -1;
+    for (int i = 0; i < teamCount; i++) {
+        if (strcmp(input, team[i].id) == 0) {
+            flag = 1;
+            idx = i;
+            break;
+        }
+    }
+
+    
+    teamCount--;
+    savefile();
+
+    puts("Delete Succesfully...");
+    enter();
 }
