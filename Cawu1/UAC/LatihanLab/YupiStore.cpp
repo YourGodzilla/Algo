@@ -77,6 +77,8 @@ void loadFile() {
         return;
     }
 
+    yupiCount = 0;
+
     while (fscanf(file, "%[^#]#%[^#]#%[^#]#%d#%d\n", yupi[yupiCount].ID, yupi[yupiCount].name, yupi[yupiCount].category, &yupi[yupiCount].stock, &yupi[yupiCount].price) != EOF)
         yupiCount++;
 
