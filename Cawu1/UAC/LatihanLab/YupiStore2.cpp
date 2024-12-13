@@ -127,7 +127,6 @@ void create() {
         scanf("%[^\n]", newYupi.price); gc
     } while (newYupi.price <= 0);
 
-    sprintf(newYupi.id, "%s#%s#%s#%d#%d\n", new)
 }
 
 void view() {
