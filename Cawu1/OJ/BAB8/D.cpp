@@ -66,7 +66,7 @@ int main() {
             search2 = m[index+1];
         }
 
-        printf("Case #%d: ", tc);
+        printf("CASE #%d: ", tc);
         if (search1 > search2) printf("%d %d\n", search2, search1);
         else printf("%d %d\n", search1, search2);
     }
