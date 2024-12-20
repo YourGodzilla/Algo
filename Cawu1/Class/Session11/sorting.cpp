@@ -97,8 +97,8 @@ void mergeSort(int arr[], int l, int r) {
 
 // Quick Sort
 int partition(int arr[], int low, int high) {
-    int r = (rand() % (high - low)) + low;
-    swap(&arr[r], &arr[high]);
+    // int r = (rand() % (high - low)) + low;
+    // swap(&arr[r], &arr[high]);
 
     int pivot = arr[high];
     int i = low - 1;
